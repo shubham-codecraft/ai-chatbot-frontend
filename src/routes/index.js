@@ -7,11 +7,13 @@ const publicRoutes = [
     { path: "/", exact: true, component: <Navigate to={"/login"} replace />},
     { path: "/login", component: <Login/> },
     { path: "/logout", component: <Logout/>},
+    { path: "*", component: <Pages404 /> }
 ]
 
 const authProtectedRoutes = [
     { path: "/", exact: true, component: <Navigate to={"/chat"} replace />},
-    { path: "/chat", component: <ChatPage/>}
+    { path: "/chat", component: <ChatPage/>},
+    { path: "*", component: <Pages404 /> }
 ]
 
 export { publicRoutes, authProtectedRoutes}

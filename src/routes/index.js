@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom"
 import ChatPage from "../pages/ChatPage"
 import Login from "../pages/Login"
 import Logout from "../pages/Logout"
+import Pages404 from "../pages/Pages404"
 
 const publicRoutes = [
     { path: "/", exact: true, component: <Navigate to={"/login"} replace />},

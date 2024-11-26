@@ -1,8 +1,8 @@
-import { call } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
+import { loginRequestFailure, loginRequestSuccess } from "./actions";
+import { LOGIN_REQUEST } from "./actionTypes";
 
 function* loginSaga(action) {
-    const authUser = localStorage.getItem("authUser")
-    const data = JSON.parse(authUser)
     try {
       const user = yield call("URL HERE", action.payload, {
         headers: {
@@ -15,9 +15,15 @@ function* loginSaga(action) {
       };
       localStorage.setItem("authUser", JSON.stringify(authUser));
       action.payload.history("/chat");
-      yield put(loginSuccess(user));
+      yield put(loginRequestSuccess(user));
     } catch (error) {
-      yield put(loginFailure(error?.message));
-      ToastAlert.fire({ icon: ToastAlertIconType.ERROR, title: "Invalid Credientials" });
+      yield put(loginRequestFailure(error?.message));
+      console.error("Error")
     }
   }
+
+  function* authenticationSaga() {
+    yield takeEvery(LOGIN_REQUEST, loginSaga);
+  }
+
+  export default authenticationSaga

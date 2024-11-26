@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import React from "react"
 import { authProtectedRoutes, publicRoutes } from './routes';
+import './assets/css/style.css'
 import Authmiddleware from './routes/route';
 
 function App() {
